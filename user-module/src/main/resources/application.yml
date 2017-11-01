@@ -1,0 +1,21 @@
+server:
+  port: 8081
+  context-path: /rogge
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/rogge
+    username: root
+    password: 123456
+
+  output:
+    ansi:
+      enabled: always   #多彩log
+
+logging:
+  level:
+    com.rogge: debug
+  file: ./logs/um.log
+  root: info

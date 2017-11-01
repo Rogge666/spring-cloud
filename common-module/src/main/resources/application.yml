@@ -1,0 +1,4 @@
+hosts:
+  user: 127.0.0.1:8081/rogge
+  command: 127.0.0.1:8082/rogge
+  order: 127.0.0.1:8083/rogge

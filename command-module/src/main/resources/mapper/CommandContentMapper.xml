@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rogge.command.mapper.CommandContentMapper">
+    <resultMap id="BaseResultMap" type="com.rogge.command.model.CommandContent">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="CONTENT" jdbcType="VARCHAR" property="content"/>
+        <result column="COMMAND_ID" jdbcType="INTEGER" property="commandId"/>
+    </resultMap>
+
+    <select id="selectLeftJoinCommand" resultType="com.rogge.command.model.vo.CommentVO">
+    SELECT
+    cc.ID AS id,
+    cc.CONTENT AS content,
+    c.NAME AS name,
+    c.DESCRIPTION AS description
+    FROM command_content cc
+    LEFT JOIN command c ON cc.COMMAND_ID = c.ID
+  </select>
+</mapper>
