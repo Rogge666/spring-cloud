@@ -1,14 +1,14 @@
 package com.rogge.order.web;
 
+import com.netflix.discovery.EurekaClient;
 import com.rogge.common.core.ApiResponse;
 import com.rogge.common.core.ApiResponseVO;
 import com.rogge.common.core.BaseController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.rogge.common.model.User;
 import com.rogge.order.model.Order;
 import com.rogge.order.service.OrderService;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,8 +35,9 @@ public class OrderController extends BaseController {
     @Resource
     private RestTemplate mRestTemplate;
 
-    @Value("${hosts.user}")
-    protected String mUserHosts;
+    @Qualifier("eurekaClient")
+    @Resource
+    private EurekaClient eurekaClient;
 
     @PostMapping("/add")
     public ApiResponse add(Order order) {
@@ -72,9 +73,10 @@ public class OrderController extends BaseController {
 
     @GetMapping("/getOrderByUserId")
     public ApiResponse getOrderByUserName(@RequestParam("userId") int userId) {
-        ApiResponseVO lApiResponseVO = mRestTemplate.getForObject(mUserHosts + "/user/detail?id=" + userId, ApiResponseVO.class);
+        ApiResponseVO lApiResponseVO = mRestTemplate.getForObject("http://user-module/rogge/user/detail?id=" + userId, ApiResponseVO.class);
         String userName = (String) ((LinkedHashMap)lApiResponseVO.getData()).get("username");
         List<Order> lOrders = orderService.getOrderByUserName(userName);
         return ApiResponse.creatSuccess(lOrders);
     }
+
 }

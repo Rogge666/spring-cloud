@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.rogge.order</groupId>
-	<artifactId>order-module</artifactId>
+	<groupId>com.rogge.discovery</groupId>
+	<artifactId>discovery-module</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
-	<name>order-module</name>
+	<name>discovery-module</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -25,20 +25,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.rogge.common</groupId>
-			<artifactId>common-module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
-
-		<!-- 整合ribbon -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-ribbon</artifactId>
+			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
 	</dependencies>
 

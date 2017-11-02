@@ -9,10 +9,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/rogge
     username: root
     password: 123456
-
+  application:
+      name: order-module
   output:
     ansi:
-      enabled: always   #多彩log
+      enabled: always #多彩log
 
 logging:
   level:
@@ -21,6 +22,12 @@ logging:
   root: info
 
 hosts:
-  user: http://127.0.0.1:8081/rogge
-  command: http://127.0.0.1:8082/rogge
-  order: http://127.0.0.1:8083/rogge
+  user-eureka: http://localhost:8089/
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${hosts.user-eureka}eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${server.port}

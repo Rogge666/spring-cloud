@@ -1,8 +1,10 @@
 server:
-  port: 8081
+  port: 8084
   context-path: /rogge
 
 spring:
+  application:
+    name: user-module
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -19,3 +21,12 @@ logging:
     com.rogge: debug
   file: ./logs/um.log
   root: info
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8089/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${server.port}
+
