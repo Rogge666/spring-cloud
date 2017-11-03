@@ -1,22 +1,2 @@
-server:
-  port: 0000000
-
-
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    serviceUrl:
-      defaultZone: http://localhost:${server.port}/eureka/
-spring:
-  application:
-    name: all-server
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/Rogge666/spring-cloud.git
-          searchPaths: config
-          username:
-          password:
-      label: master
+person:
+  name: wulei

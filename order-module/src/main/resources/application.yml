@@ -1,3 +1,6 @@
+hosts:
+  user-eureka: http://localhost:8089
+
 server:
   port: 8083
   context-path: /rogge
@@ -11,6 +14,9 @@ spring:
     password: 123456
   application:
       name: order-module
+  cloud:
+      config:
+        uri: ${hosts.user-eureka}
   output:
     ansi:
       enabled: always #多彩log
@@ -21,13 +27,13 @@ logging:
   file: ./logs/order.log
   root: info
 
-hosts:
-  user-eureka: http://localhost:8089/
-
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${hosts.user-eureka}eureka/
+      defaultZone: ${hosts.user-eureka}/eureka/
   instance:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${server.port}
+
+
+
