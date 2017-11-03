@@ -1,7 +1,6 @@
 server:
   port: 8089
 
-
 eureka:
   client:
     register-with-eureka: false
@@ -11,6 +10,8 @@ eureka:
 spring:
   application:
     name: all-server
+  profiles:
+      active: native
   cloud:
     config:
       server:
@@ -19,4 +20,7 @@ spring:
           searchPaths: config
           username:
           password:
+        native:
+#          search-locations: file:C:\\Users\\Administrator\\Desktop\\config
+          search-locations: classpath:/properties/
       label: master

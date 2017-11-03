@@ -9,6 +9,8 @@ import com.github.pagehelper.PageInfo;
 import com.rogge.order.model.Order;
 import com.rogge.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,6 +28,7 @@ import java.util.List;
  * @author Created by Rogge on 2017/11/01
  * @since 1.0.0
  */
+@RefreshScope
 @RestController
 @RequestMapping("/order")
 public class OrderController extends BaseController {
@@ -38,6 +41,9 @@ public class OrderController extends BaseController {
     @Qualifier("eurekaClient")
     @Resource
     private EurekaClient eurekaClient;
+
+    @Value("${person.name}")
+    String name;
 
     @PostMapping("/add")
     public ApiResponse add(Order order) {
@@ -73,8 +79,9 @@ public class OrderController extends BaseController {
 
     @GetMapping("/getOrderByUserId")
     public ApiResponse getOrderByUserName(@RequestParam("userId") int userId) {
+        System.out.println("==========" + name);
         ApiResponseVO lApiResponseVO = mRestTemplate.getForObject("http://user-module/rogge/user/detail?id=" + userId, ApiResponseVO.class);
-        String userName = (String) ((LinkedHashMap)lApiResponseVO.getData()).get("username");
+        String userName = (String) ((LinkedHashMap) lApiResponseVO.getData()).get("username");
         List<Order> lOrders = orderService.getOrderByUserName(userName);
         return ApiResponse.creatSuccess(lOrders);
     }

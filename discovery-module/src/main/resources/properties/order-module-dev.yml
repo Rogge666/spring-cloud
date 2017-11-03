@@ -1,3 +1,6 @@
+person:
+  name: wulei
+
 hosts:
   user-eureka: http://localhost:8089
 
@@ -14,10 +17,6 @@ spring:
     password: 123456
   application:
       name: order-module
-  cloud:
-      config:
-        uri: ${hosts.user-eureka}
-        name: order-config
   output:
     ansi:
       enabled: always #多彩log
@@ -35,6 +34,3 @@ eureka:
   instance:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${server.port}
-
-
-
