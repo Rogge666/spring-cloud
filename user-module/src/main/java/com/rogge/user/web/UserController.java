@@ -10,6 +10,7 @@ import com.rogge.common.core.BaseController;
 import com.rogge.user.model.User;
 import com.rogge.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -52,9 +53,6 @@ public class UserController extends BaseController {
 
     @GetMapping("/detail")
     public ApiResponse detail(@RequestParam Integer id) {
-        System.out.println("=================" + id);
-
-
         User user = userService.findById(id);
         return ApiResponse.creatSuccess(user);
     }
