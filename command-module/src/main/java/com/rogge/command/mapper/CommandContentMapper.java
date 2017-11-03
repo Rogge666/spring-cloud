@@ -2,8 +2,8 @@ package com.rogge.command.mapper;
 
 import com.rogge.command.model.CommandContent;
 import com.rogge.command.model.vo.CommentVO;
+import com.rogge.common.core.Mapper;
 import org.springframework.stereotype.Repository;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 

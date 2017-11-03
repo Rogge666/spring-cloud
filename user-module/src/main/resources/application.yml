@@ -11,7 +11,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/rogge
     username: root
     password: 123456
-
   output:
     ansi:
       enabled: always   #多彩log

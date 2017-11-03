@@ -63,7 +63,7 @@ public class OrderController extends BaseController {
         return ApiResponse.creatSuccess(order);
     }
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     public ApiResponse list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
         List<Order> list = orderService.findAll();
