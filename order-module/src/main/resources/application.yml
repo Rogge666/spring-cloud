@@ -17,6 +17,7 @@ spring:
   cloud:
       config:
         uri: ${hosts.user-eureka}
+        name: order-config
   output:
     ansi:
       enabled: always #多彩log
