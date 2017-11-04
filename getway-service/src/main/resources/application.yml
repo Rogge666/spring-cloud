@@ -1,19 +1,12 @@
+server:
+  port: 80
+
 hosts:
   user-eureka: http://localhost:8089
 
-server:
-  port: 8083
-  context-path: /rogge
-
 spring:
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/rogge?autoReconnect=true&useUnicode=true&characterEncoding=utf8
-    username: root
-    password: 123456
   application:
-      name: order-module
+      name: getway-service
   output:
     ansi:
       enabled: always #多彩log
@@ -21,7 +14,7 @@ spring:
 logging:
   level:
     com.rogge: debug
-  file: ./logs/order.log
+  file: ./logs/getway.log
   root: info
 
 eureka:
@@ -32,5 +25,11 @@ eureka:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${server.port}
 
-
-
+zuul:
+  routes:
+    user:
+      path: /user-api/**
+      serviceId: user-module
+    order:
+      path: /order-api/**
+      serviceId: order-module

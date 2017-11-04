@@ -1,12 +1,11 @@
 person:
-  name: wulei6
+  name: wulei
 
 hosts:
   user-eureka: http://localhost:8089
 
 server:
   port: 8083
-  context-path: /rogge
 
 spring:
   datasource:

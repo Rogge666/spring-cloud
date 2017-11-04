@@ -1,6 +1,5 @@
 server:
-  port: 8084
-  context-path: /rogge
+  port: 8085
 
 spring:
   application:

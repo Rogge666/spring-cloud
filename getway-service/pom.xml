@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.rogge.discovery</groupId>
-	<artifactId>discovery-module</artifactId>
+	<groupId>com.rogge.getway</groupId>
+	<artifactId>getway-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>discovery-module</name>
+	<name>getway-service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -26,12 +26,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-server</artifactId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 
 		<dependency>
@@ -48,6 +43,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

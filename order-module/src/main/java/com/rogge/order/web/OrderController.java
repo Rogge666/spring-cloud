@@ -1,11 +1,13 @@
 package com.rogge.order.web;
 
 import com.netflix.discovery.EurekaClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.rogge.common.core.ApiResponse;
 import com.rogge.common.core.ApiResponseVO;
 import com.rogge.common.core.BaseController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.rogge.common.core.ResponseCode;
 import com.rogge.order.model.Order;
 import com.rogge.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -78,12 +80,18 @@ public class OrderController extends BaseController {
     }
 
     @GetMapping("/getOrderByUserId")
+    @HystrixCommand(fallbackMethod = "getOrderByUserNameError")
     public ApiResponse getOrderByUserName(@RequestParam("userId") int userId) {
         System.out.println("==========" + name);
-        ApiResponseVO lApiResponseVO = mRestTemplate.getForObject("http://user-module/rogge/user/detail?id=" + userId, ApiResponseVO.class);
+        ApiResponseVO lApiResponseVO = mRestTemplate.getForObject("http://user-module/user/detail?id=" + userId, ApiResponseVO.class);
         String userName = (String) ((LinkedHashMap) lApiResponseVO.getData()).get("username");
         List<Order> lOrders = orderService.getOrderByUserName(userName);
         return ApiResponse.creatSuccess(lOrders);
+    }
+
+    public ApiResponse getOrderByUserNameError(int userId) {
+        System.out.println("===========" + userId);
+        return ApiResponse.creatFail(ResponseCode.Base.API_ERR);
     }
 
 }
