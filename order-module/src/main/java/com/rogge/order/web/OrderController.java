@@ -1,23 +1,19 @@
 package com.rogge.order.web;
 
-import com.netflix.discovery.EurekaClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.rogge.common.core.ApiResponse;
-import com.rogge.common.core.ApiResponseVO;
-import com.rogge.common.core.BaseController;
+import com.rogge.common.core.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.rogge.common.core.ResponseCode;
+import com.rogge.order.feign.UserFeign;
 import com.rogge.order.model.Order;
+import com.rogge.order.model.vo.User;
 import com.rogge.order.service.OrderService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -40,9 +36,8 @@ public class OrderController extends BaseController {
     @Resource
     private RestTemplate mRestTemplate;
 
-    @Qualifier("eurekaClient")
     @Resource
-    private EurekaClient eurekaClient;
+    private UserFeign mUserFeign;
 
     @Value("${person.name}")
     String name;
@@ -81,10 +76,18 @@ public class OrderController extends BaseController {
 
     @GetMapping("/getOrderByUserId")
     @HystrixCommand(fallbackMethod = "getOrderByUserNameError")
-    public ApiResponse getOrderByUserName(@RequestParam("userId") int userId) {
+    public ApiResponse getOrderByUserId(@RequestParam("userId") int userId) {
         System.out.println("==========" + name);
-        ApiResponseVO lApiResponseVO = mRestTemplate.getForObject("http://user-module/user/detail?id=" + userId, ApiResponseVO.class);
-        String userName = (String) ((LinkedHashMap) lApiResponseVO.getData()).get("username");
+        User lUser = mRestTemplate.getForObject("http://user-module/user/detail?id=" + userId, User.class);
+        String userName = lUser.getUsername();
+        List<Order> lOrders = orderService.getOrderByUserName(userName);
+        return ApiResponse.creatSuccess(lOrders);
+    }
+
+    @GetMapping("/getOrderByUserIdV2")
+    public ApiResponse getOrderByUserIdV2(@RequestParam("userId") Long userId) {
+        User lUser = mUserFeign.detail(userId);
+        String userName = lUser.getUsername();
         List<Order> lOrders = orderService.getOrderByUserName(userName);
         return ApiResponse.creatSuccess(lOrders);
     }

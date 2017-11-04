@@ -1,5 +1,5 @@
 person:
-  name: wulei
+  name: wulei111
 
 hosts:
   user-eureka: http://localhost:8089
@@ -16,9 +16,19 @@ spring:
     password: 123456
   application:
       name: order-module
+#  rabbitmq:
+#      host: localhost
+#      port: 8161
+#      username: admin
+#      password: admin
   output:
     ansi:
       enabled: always #多彩log
+
+#不加会无法refresh 禁用验证
+management:
+  security:
+    enabled: false
 
 logging:
   level:

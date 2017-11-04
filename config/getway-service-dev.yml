@@ -5,11 +5,13 @@ hosts:
   user-eureka: http://localhost:8089
 
 spring:
-  application:
-      name: getway-service
   output:
     ansi:
       enabled: always #多彩log
+ 
+management:
+  security:
+    enabled: false
 
 logging:
   level:
@@ -25,6 +27,7 @@ eureka:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${server.port}
 
+#zuul动态更新路由 在增加时立刻有效  下线时不生效 可能需要一定时间才生效
 zuul:
   routes:
     user:
@@ -33,3 +36,7 @@ zuul:
     order:
       path: /order-api/**
       serviceId: order-module
+#    command:
+#      path: /command-api/**
+#      serviceId: command-module
+

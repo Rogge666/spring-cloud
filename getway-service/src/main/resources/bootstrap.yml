@@ -1,0 +1,9 @@
+spring:
+  application:
+      name: getway-service
+  cloud:
+    config:
+      uri: http://localhost:8089/
+      name: getway-service
+      profile: dev
+      label: master

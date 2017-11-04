@@ -52,9 +52,8 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/detail")
-    public ApiResponse detail(@RequestParam Integer id) {
-        User user = userService.findById(id);
-        return ApiResponse.creatSuccess(user);
+    public User detail(@RequestParam Integer id) {
+        return userService.findById(id);
     }
 
     @GetMapping("/list")

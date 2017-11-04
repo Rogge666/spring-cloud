@@ -1,5 +1,5 @@
 person:
-  name: wulei
+  name: wulei1
 
 hosts:
   user-eureka: http://localhost:8089
@@ -19,6 +19,15 @@ spring:
   output:
     ansi:
       enabled: always #多彩log
+  rabbitmq:
+      host: localhost
+      port: 8161
+      username:
+      password:
+
+management:
+  security:
+    enabled: false
 
 logging:
   level:
@@ -33,3 +42,4 @@ eureka:
   instance:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${server.port}
+

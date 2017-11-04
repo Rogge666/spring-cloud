@@ -10,8 +10,8 @@ eureka:
 spring:
   application:
     name: all-server
-  profiles:
-      active: native
+#  profiles:
+#      active: native
   cloud:
     config:
       server:
@@ -20,7 +20,7 @@ spring:
           searchPaths: config
           username:
           password:
-        native:
+#        native:
 #          search-locations: file:C:\\Users\\Administrator\\Desktop\\config
-          search-locations: classpath:/properties/
-#      label: master
+#          search-locations: classpath:/properties/
+      label: master
