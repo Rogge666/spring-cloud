@@ -27,7 +27,6 @@ eureka:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${server.port}
 
-#zuul动态更新路由 在增加时立刻有效  下线时不生效 可能需要一定时间才生效
 zuul:
   routes:
     user:

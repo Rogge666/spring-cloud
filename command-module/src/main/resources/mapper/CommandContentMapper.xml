@@ -11,12 +11,13 @@
     </resultMap>
 
     <select id="selectLeftJoinCommand" resultType="com.rogge.command.model.vo.CommentVO">
-    SELECT
-    cc.ID AS id,
-    cc.CONTENT AS content,
-    c.NAME AS name,
-    c.DESCRIPTION AS description
-    FROM command_content cc
-    LEFT JOIN command c ON cc.COMMAND_ID = c.ID
-  </select>
+        SELECT
+            cc.ID AS id,
+            cc.CONTENT AS content,
+            c.NAME AS name,
+            c.DESCRIPTION AS description
+        FROM command_content cc
+        LEFT JOIN command c ON cc.COMMAND_ID = c.ID
+    </select>
+
 </mapper>

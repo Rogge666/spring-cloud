@@ -1,5 +1,5 @@
 person:
-  name: wulei111
+  name: wulei
 
 hosts:
   user-eureka: http://localhost:8089
@@ -25,7 +25,6 @@ spring:
     ansi:
       enabled: always #多彩log
 
-#不加会无法refresh 禁用验证
 management:
   security:
     enabled: false
