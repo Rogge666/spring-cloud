@@ -15,5 +15,3 @@ user-module    为用户服务提供者
 module启动顺序 先启动discovery-module服务注册中心 然后启动getway-service网关配置中心，其他随意
 
 需要注意discovery-module 下的application.yml需要配合自己的环境配置，目前有3种配置方式，git native:file classpath
-
-本地环境需要安装activemq才能实现动态配置
