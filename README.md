@@ -1,6 +1,6 @@
 此工程有6个module
 
-command-module 为测试动态路由
+command-module 为测试动态路由和测试Spring Session Redis 实现的缓存
 
 common-module  为公库
 
