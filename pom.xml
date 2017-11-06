@@ -24,7 +24,7 @@
 		<module>common-module</module>
 		<module>order-module</module>
 		<module>discovery-module</module>
-		<module>getway-service</module>
+		<module>gateway-service</module>
 	</modules>
 
 	<properties>

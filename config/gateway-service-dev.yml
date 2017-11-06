@@ -16,7 +16,7 @@ management:
 logging:
   level:
     com.rogge: debug
-  file: ./logs/getway.log
+  file: ./logs/gateway.log
   root: info
 
 eureka:

@@ -1,9 +1,9 @@
 spring:
   application:
-      name: getway-service
+      name: gateway-service
   cloud:
     config:
       uri: http://localhost:8089/
-      name: getway-service
+      name: gateway-service
       profile: dev
       label: master
