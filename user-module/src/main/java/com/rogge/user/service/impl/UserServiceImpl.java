@@ -1,8 +1,8 @@
 package com.rogge.user.service.impl;
 
 import com.rogge.common.core.AbstractService;
+import com.rogge.common.model.User;
 import com.rogge.user.mapper.UserMapper;
-import com.rogge.user.model.User;
 import com.rogge.user.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

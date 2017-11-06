@@ -1,6 +1,6 @@
 package com.rogge.order.feign;
 
-import com.rogge.order.model.vo.User;
+import com.rogge.common.model.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;

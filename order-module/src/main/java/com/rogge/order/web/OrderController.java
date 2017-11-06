@@ -4,10 +4,13 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.rogge.common.core.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.rogge.common.model.User;
 import com.rogge.order.feign.UserFeign;
 import com.rogge.order.model.Order;
-import com.rogge.order.model.vo.User;
 import com.rogge.order.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +33,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/order")
 public class OrderController extends BaseController {
+    private final Logger logger = LoggerFactory.getLogger(OrderController.class);
+
     @Resource
     private OrderService orderService;
 
@@ -77,6 +82,8 @@ public class OrderController extends BaseController {
     @GetMapping("/getOrderByUserId")
     @HystrixCommand(fallbackMethod = "getOrderByUserNameError")
     public ApiResponse getOrderByUserId(@RequestParam("userId") int userId) {
+//        User lUser1 = mSessionUserInfo.getCurrentSessionUser(User.class);
+//        logger.info("UserId=" + lUser1.getId() + "\n" + "UserName=" + lUser1.getUsername());
         System.out.println("==========" + name);
         User lUser = mRestTemplate.getForObject("http://user-module/user/detail?id=" + userId, User.class);
         String userName = lUser.getUsername();

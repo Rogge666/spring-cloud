@@ -2,18 +2,16 @@ package com.rogge.user.web;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.DiscoveryClient;
-import com.netflix.discovery.EurekaClient;
 import com.rogge.common.core.ApiResponse;
 import com.rogge.common.core.BaseController;
-import com.rogge.user.model.User;
+import com.rogge.common.model.User;
 import com.rogge.user.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -29,6 +27,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController extends BaseController {
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Resource
     private UserService userService;
@@ -49,6 +48,17 @@ public class UserController extends BaseController {
     public ApiResponse update(User user) {
         userService.update(user);
         return ApiResponse.creatSuccess();
+    }
+
+    @GetMapping("/login")
+    public ApiResponse login(HttpSession session) {
+        User lUser = new User();
+        lUser.setId(5);
+        lUser.setUsername("吴雷");
+        mSessionUserInfo.setSessionUser(session, lUser);
+        User lUser1 = mSessionUserInfo.getCurrentSessionUser(User.class);
+        logger.info("UserId=" + lUser.getId() + "\n" + "UserName=" + lUser.getUsername());
+        return ApiResponse.creatSuccess((Object) "登录成功");
     }
 
     @GetMapping("/detail")

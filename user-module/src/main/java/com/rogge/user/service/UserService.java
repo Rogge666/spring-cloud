@@ -2,7 +2,7 @@ package com.rogge.user.service;
 
 
 import com.rogge.common.core.Service;
-import com.rogge.user.model.User;
+import com.rogge.common.model.User;
 
 /**
 * [Description]

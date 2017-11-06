@@ -28,7 +28,6 @@
 			<groupId>com.rogge.common</groupId>
 			<artifactId>common-module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<type>jar</type>
 		</dependency>
 	</dependencies>
 

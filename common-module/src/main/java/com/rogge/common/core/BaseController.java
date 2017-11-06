@@ -1,6 +1,7 @@
 package com.rogge.common.core;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.rogge.common.conf.redis.RedisDao;
+import com.rogge.common.conf.redis.SessionUserInfo;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -16,10 +17,10 @@ public class BaseController {
      * 默认每页显示条数
      */
 
-//    @Resource
-//    public RedisDao mRedisDao;
-//    @Resource
-//    public SessionUserInfo mSessionUserInfo;
+    @Resource
+    public RedisDao mRedisDao;
+    @Resource
+    public SessionUserInfo mSessionUserInfo;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {

@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
-public class User {
+public class User extends SessionUser{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

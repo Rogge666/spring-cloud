@@ -1,4 +1,4 @@
-package com.rogge.order.conf;
+package com.rogge.common.conf;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
