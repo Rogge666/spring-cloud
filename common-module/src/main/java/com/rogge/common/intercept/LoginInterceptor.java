@@ -17,29 +17,29 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
-	@Resource
-	private SessionUserInfo sessionUserInfo;
+    @Resource
+    private SessionUserInfo sessionUserInfo;
 
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		// 未登录
-		User user = sessionUserInfo.getCurrentSessionUser(User.class);
-		if (user == null) {
-			ApiResponse apiResponse = ApiResponse.creatFail(ResponseCode.LoginRegister.NOLOGIN);
-			response.setContentType("application/json;charset=UTF-8");
-			response.getWriter().print(JSON.toJSONString(apiResponse, SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteEnumUsingToString));
-			return false;
-		}else {
-			sessionUserInfo.setSessionUser(user);
-		}
-		return true;
-	}
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 未登录
+        User user = sessionUserInfo.getCurrentSessionUser(User.class);
+        if (user == null) {
+            ApiResponse apiResponse = ApiResponse.creatFail(ResponseCode.LoginRegister.NOLOGIN);
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().print(JSON.toJSONString(apiResponse, SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteEnumUsingToString));
+            return false;
+        } else {
+            sessionUserInfo.setSessionUser(user);
+        }
+        return true;
+    }
 
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
-	}
+    }
 
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
-	}
+    }
 
 }

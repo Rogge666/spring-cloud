@@ -111,9 +111,9 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //登录过滤器
-//        registry.addInterceptor(mLoginInterceptor)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/user/login", "/order/getOrderByUserId");
+        registry.addInterceptor(mLoginInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/user/login", "/user/list");
     }
 
     private void responseResult(HttpServletResponse response, ApiResponse apiResponse) {

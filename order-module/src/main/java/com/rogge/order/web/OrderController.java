@@ -83,12 +83,14 @@ public class OrderController extends BaseController {
 
     /**
      * 测试mRestTemplate
+     *
      * @param userId
      * @return
      */
     @GetMapping("/getOrderByUserId")
     @HystrixCommand(fallbackMethod = "getOrderByUserNameError")
     public ApiResponse getOrderByUserId(@RequestParam("userId") Long userId) {
+        // TODO: 2017/11/7 0007 by Rogge RestTemplate没有做session透传  所以会在拦截器失败，如需调用去掉登录拦截器即可
         System.out.println("==========" + name);
         User lUser = mRestTemplate.getForObject("http://user-module/user/detail?id=" + userId, User.class);
         String userName = lUser.getUsername();
@@ -98,6 +100,7 @@ public class OrderController extends BaseController {
 
     /**
      * 测试feign
+     *
      * @param userId
      * @return
      */
@@ -112,6 +115,7 @@ public class OrderController extends BaseController {
 
     /**
      * 测试session透传  需要先调用user模块的登录
+     *
      * @return
      */
     @GetMapping("/getOrderByUserIdV3")
