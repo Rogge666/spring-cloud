@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -79,11 +81,14 @@ public class OrderController extends BaseController {
         return ApiResponse.creatSuccess(pageInfo);
     }
 
+    /**
+     * 测试mRestTemplate
+     * @param userId
+     * @return
+     */
     @GetMapping("/getOrderByUserId")
     @HystrixCommand(fallbackMethod = "getOrderByUserNameError")
-    public ApiResponse getOrderByUserId(@RequestParam("userId") int userId) {
-//        User lUser1 = mSessionUserInfo.getCurrentSessionUser(User.class);
-//        logger.info("UserId=" + lUser1.getId() + "\n" + "UserName=" + lUser1.getUsername());
+    public ApiResponse getOrderByUserId(@RequestParam("userId") Long userId) {
         System.out.println("==========" + name);
         User lUser = mRestTemplate.getForObject("http://user-module/user/detail?id=" + userId, User.class);
         String userName = lUser.getUsername();
@@ -91,7 +96,13 @@ public class OrderController extends BaseController {
         return ApiResponse.creatSuccess(lOrders);
     }
 
+    /**
+     * 测试feign
+     * @param userId
+     * @return
+     */
     @GetMapping("/getOrderByUserIdV2")
+    @HystrixCommand(fallbackMethod = "getOrderByUserNameError")
     public ApiResponse getOrderByUserIdV2(@RequestParam("userId") Long userId) {
         User lUser = mUserFeign.detail(userId);
         String userName = lUser.getUsername();
@@ -99,8 +110,19 @@ public class OrderController extends BaseController {
         return ApiResponse.creatSuccess(lOrders);
     }
 
-    public ApiResponse getOrderByUserNameError(int userId) {
-        System.out.println("===========" + userId);
+    /**
+     * 测试session透传  需要先调用user模块的登录
+     * @return
+     */
+    @GetMapping("/getOrderByUserIdV3")
+    public ApiResponse getOrderByUserIdV3() {
+        User lUser = mSessionUserInfo.getCurrentSessionUser(User.class);
+        String userName = lUser.getUsername();
+        List<Order> lOrders = orderService.getOrderByUserName(userName);
+        return ApiResponse.creatSuccess(lOrders);
+    }
+
+    public ApiResponse getOrderByUserNameError(Long userId) {
         return ApiResponse.creatFail(ResponseCode.Base.API_ERR);
     }
 

@@ -25,6 +25,13 @@ spring:
     ansi:
       enabled: always #多彩log
 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+
 management:
   security:
     enabled: false

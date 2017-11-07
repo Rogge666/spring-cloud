@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -51,13 +52,9 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/login")
-    public ApiResponse login(HttpSession session) {
-        User lUser = new User();
-        lUser.setId(5);
-        lUser.setUsername("吴雷");
+    public ApiResponse login(HttpSession session, @RequestParam Integer id) {
+        User lUser = userService.findById(id);
         mSessionUserInfo.setSessionUser(session, lUser);
-        User lUser1 = mSessionUserInfo.getCurrentSessionUser(User.class);
-        logger.info("UserId=" + lUser.getId() + "\n" + "UserName=" + lUser.getUsername());
         return ApiResponse.creatSuccess((Object) "登录成功");
     }
 

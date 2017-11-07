@@ -1,5 +1,5 @@
 server:
-  port: 8087
+  port: 80
 
 hosts:
   user-eureka: http://localhost:8089
@@ -32,9 +32,11 @@ zuul:
     user:
       path: /user-api/**
       serviceId: user-module
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
     order:
       path: /order-api/**
       serviceId: order-module
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
 #    command:
 #      path: /command-api/**
 #      serviceId: command-module
