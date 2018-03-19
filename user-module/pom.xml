@@ -6,7 +6,7 @@
 	<groupId>com.rogge.user</groupId>
 	<artifactId>user-module</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>user-module</name>
 	<description>Demo project for Spring Boot</description>
