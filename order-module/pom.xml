@@ -51,6 +51,14 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.dangdang/sharding-jdbc-core -->
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<version>1.5.4.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

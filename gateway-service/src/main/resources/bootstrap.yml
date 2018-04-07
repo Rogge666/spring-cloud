@@ -1,6 +1,9 @@
 spring:
   application:
       name: gateway-service
+  output:
+      ansi:
+        enabled: always #多彩log
   cloud:
     config:
       uri: http://localhost:8089/

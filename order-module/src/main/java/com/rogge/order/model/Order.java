@@ -2,10 +2,14 @@ package com.rogge.order.model;
 
 import javax.persistence.*;
 
+@Table(name = "t_order")
 public class Order {
     @Id
     @Column(name = "order_id")
     private Long orderId;
+
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "product_id")
     private Long productId;
@@ -15,9 +19,6 @@ public class Order {
 
     @Column(name = "order_user_name")
     private String orderUserName;
-
-    @Column(name = "order_user_id")
-    private Long orderUserId;
 
     /**
      * @return order_id
@@ -75,17 +76,11 @@ public class Order {
         this.orderUserName = orderUserName;
     }
 
-    /**
-     * @return order_user_id
-     */
-    public Long getOrderUserId() {
-        return orderUserId;
+    public Long getUserId() {
+        return userId;
     }
 
-    /**
-     * @param orderUserId
-     */
-    public void setOrderUserId(Long orderUserId) {
-        this.orderUserId = orderUserId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

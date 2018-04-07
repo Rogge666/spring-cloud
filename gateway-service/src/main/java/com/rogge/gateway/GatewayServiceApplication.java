@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.session.data.redis.RedisFlushMode;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableZuulProxy
 @EnableEurekaClient
 @EnableRedisHttpSession(redisFlushMode = RedisFlushMode.IMMEDIATE)
+@ComponentScan(basePackages={"com.rogge.common","com.rogge.gateway"})
 public class GatewayServiceApplication {
 
 	public static void main(String[] args) {

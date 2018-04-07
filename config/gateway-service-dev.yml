@@ -30,14 +30,14 @@ eureka:
 zuul:
   routes:
     user:
-      path: /user-api/**
+      path: /user/**
       serviceId: user-module
       sensitiveHeaders: Cookie,Set-Cookie,Authorization
     order:
-      path: /order-api/**
+      path: /order/**
       serviceId: order-module
       sensitiveHeaders: Cookie,Set-Cookie,Authorization
 #    command:
-#      path: /command-api/**
+#      path: /command/**
 #      serviceId: command-module
 

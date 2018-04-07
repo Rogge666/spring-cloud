@@ -1,18 +1,6 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : localhost
-Source Server Version : 50717
-Source Host           : localhost:3306
-Source Database       : rogge
-
-Target Server Type    : MYSQL
-Target Server Version : 50717
-File Encoding         : 65001
-
-Date: 2017-11-04 19:07:31
-*/
-
+DROP SCHEMA IF EXISTS rogge;
+CREATE SCHEMA IF NOT EXISTS rogge;
+USE rogge;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------

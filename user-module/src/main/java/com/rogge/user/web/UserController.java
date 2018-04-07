@@ -8,10 +8,12 @@ import com.rogge.common.model.User;
 import com.rogge.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -26,7 +28,6 @@ import java.util.List;
  * @since 1.0.0
  */
 @RestController
-@RequestMapping("/user")
 public class UserController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 

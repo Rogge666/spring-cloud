@@ -1,4 +1,4 @@
-package com.rogge.common.conf;
+package com.rogge.command.conf;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -7,7 +7,6 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import com.rogge.common.core.ApiResponse;
 import com.rogge.common.core.ResponseCode;
 import com.rogge.common.core.ServiceException;
-import com.rogge.common.intercept.LoginInterceptor;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +17,8 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,9 +39,6 @@ import java.util.List;
 @Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     private final Logger logger = LoggerFactory.getLogger(WebMvcConfigurer.class);
-
-    @Resource
-    private LoginInterceptor mLoginInterceptor;
 
     //使用阿里 FastJson 作为JSON MessageConverter
     @Override
@@ -105,15 +99,6 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         //registry.addMapping("/**");
-    }
-
-    //添加拦截器
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        //登录过滤器
-        registry.addInterceptor(mLoginInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/user/login", "/user/list");
     }
 
     private void responseResult(HttpServletResponse response, ApiResponse apiResponse) {

@@ -3,16 +3,16 @@
 <mapper namespace="com.rogge.order.mapper.OrderMapper">
   <resultMap id="BaseResultMap" type="com.rogge.order.model.Order">
     <id column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="product_id" jdbcType="BIGINT" property="productId" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
     <result column="order_user_name" jdbcType="VARCHAR" property="orderUserName" />
-    <result column="order_user_id" jdbcType="BIGINT" property="orderUserId" />
   </resultMap>
 
   <select id="selectOrderByUserName" resultMap="BaseResultMap">
     SELECT
     *
-    FROM `order`
+    FROM `t_order`
     WHERE order_user_name = #{userName}
   </select>
 </mapper>

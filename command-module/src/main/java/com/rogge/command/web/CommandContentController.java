@@ -3,7 +3,6 @@ package com.rogge.command.web;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.rogge.command.model.CommandContent;
-import com.rogge.command.model.User;
 import com.rogge.command.model.vo.CommentVO;
 import com.rogge.command.service.CommandContentService;
 import com.rogge.common.core.ApiResponse;
@@ -27,7 +26,6 @@ import java.util.List;
  * @since 1.0.0
  */
 @RestController
-@RequestMapping("/command/content")
 public class CommandContentController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(CommandContentController.class);
 

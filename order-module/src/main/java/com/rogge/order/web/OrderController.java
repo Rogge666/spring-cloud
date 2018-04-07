@@ -33,7 +33,6 @@ import java.util.List;
  */
 @RefreshScope
 @RestController
-@RequestMapping("/order")
 public class OrderController extends BaseController {
     private final Logger logger = LoggerFactory.getLogger(OrderController.class);
 

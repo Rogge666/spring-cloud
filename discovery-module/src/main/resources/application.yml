@@ -11,6 +11,9 @@ eureka:
 spring:
   application:
     name: all-server
+  output:
+      ansi:
+        enabled: always #多彩log
 #  profiles:
 #      active: native
   cloud:
