@@ -1,25 +1,29 @@
 package com.rogge.order.web;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.rogge.common.core.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.rogge.common.core.ApiResponse;
+import com.rogge.common.core.BaseController;
+import com.rogge.common.core.ResponseCode;
 import com.rogge.common.model.User;
 import com.rogge.order.feign.UserFeign;
 import com.rogge.order.model.Order;
 import com.rogge.order.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * [Description]
@@ -91,7 +95,9 @@ public class OrderController extends BaseController {
     public ApiResponse getOrderByUserId(@RequestParam("userId") Long userId) {
         // TODO: 2017/11/7 0007 by Rogge RestTemplate没有做session透传  所以会在拦截器失败，如需调用去掉登录拦截器即可
         System.out.println("==========" + name);
-        User lUser = mRestTemplate.getForObject("http://user-module/user/detail?id=" + userId, User.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        User lUser = mRestTemplate.getForObject("http://user-module/detail?id={userId}", User.class,map);
         String userName = lUser.getUsername();
         List<Order> lOrders = orderService.getOrderByUserName(userName);
         return ApiResponse.creatSuccess(lOrders);

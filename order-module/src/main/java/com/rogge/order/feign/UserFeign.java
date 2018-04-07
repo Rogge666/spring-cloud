@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @FeignClient(name = "user-module", fallback = UserFeign.UserFeignFallback.class)
 public interface UserFeign {
-    @RequestMapping("/user/detail")
+    @RequestMapping("/detail")
     User detail(@RequestParam("id") Long id);
 
     @Component
