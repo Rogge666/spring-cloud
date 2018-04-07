@@ -22,7 +22,9 @@ module启动顺序 先启动discovery-module服务注册中心
 
 请求顺序
 
-http://localhost/user/login?id=5   登录(get) 测试RestTemplate
+http://localhost/user/login?id=5   登录(get) 
+
+http://localhost/order/getOrderByUserId?userId=5  获取数据(get) 测试RestTemplate
 
 http://localhost/order/getOrderByUserIdV2?userId=5  获取数据(get) 测试feign
 
